@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, Navigate, useLocation} from "react-router-dom";
+import Helper from "../../service/helper.jsx";
 
 function Sidebar() {
     const location = useLocation();
@@ -81,22 +82,24 @@ function Sidebar() {
                             <div data-i18n="Analytics">Dashboard</div>
                         </Link>
                     </li>
+                    {
+                        Helper.can('products')?
                     <li className={location.pathname === "/products" ? "menu-item active" : "menu-item"}>
                         <Link to={"/products"} className="menu-link">
                             <i className="menu-icon tf-icons bx bx-list-check"></i>
                             <div data-i18n="Analytics">Products</div>
                         </Link>
-                    </li>
+                    </li>:''
+                    }
 
+                    {
+                        Helper.can('products')?
 
                     <li className="menu-item" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >
                         <a href="javascript:void(0);" className="menu-link menu-toggle" >
                             <i className="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Layouts</div>
                         </a>
-
-
-
                         <ul className="collapse" id="collapseExample">
                             <li className="menu-item ">
                                 <a href="layouts-without-menu.html" className="menu-link">
@@ -125,6 +128,8 @@ function Sidebar() {
                             </li>
                         </ul>
                     </li>
+                            :''
+                    }
 
                     <li className="menu-header small text-uppercase">
                         <span className="menu-header-text">Pages</span>

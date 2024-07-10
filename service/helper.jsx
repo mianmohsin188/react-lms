@@ -21,7 +21,18 @@ const Helper = {
             }
         }
         return stars;
+    },
+    can(permissionName){
+            let userPermissions = this.getLoggedInUser()?.permissions ??['products'];
+           let permissionExist =  userPermissions.includes(permissionName)
+           if(permissionExist)
+              return true;
+           else
+              return false;
+    },
+    getLoggedInUser(){
+         let user = JSON.parse(localStorage.getItem('user'));
+         return user;
     }
-
 }
 export default Helper
